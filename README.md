@@ -44,6 +44,7 @@ plano FaleMais.
 - [ReactJS](https://pt-br.reactjs.org/) - Web Framework
 - [Express](https://expressjs.com/) - Server Framework
 - [NodeJs](https://nodejs.org/en/) - Server Environment
+- [Jest](https://jestjs.io/docs/en/getting-started.html) - Test Framework
 
 Escolhi nesse projeto o SQLite simplesmente por ser mais fácil de executar para testes em máquinas diferentes, tendo em vista que não é necessário instalar banco de dados na máquina. O sqlite é apenas um arquivo simples, porém a aplicação fica com toda a estrutura para receber um banco de dados mais complexo, basta mudar as configurações do Knex.
 
@@ -77,12 +78,12 @@ npm install
 
 Perfeito! Agora vamos rodar nossas migrations para que seja criado no banco de dados nossas tabelas.
 ```
-npx knex-migrate
+npm run knex-migrate
 ```
 
 Quase lá! Vamos popular nosso banco de dados com as informações que vamos utilizar.
 ```
-npx knex-seed
+npm run knex-seed
 ```
 
 Agora que o nosso back-end já está com suas dependências instaladas, vamos instalar as do nosso SPA. Em um novo terminal, na pasta **web** do projeto execute o seguinte:
@@ -92,15 +93,15 @@ npm install
 
 ## Usage
 
-Para executar o servidor express vamos utilizar o package runner do npm, na pasta **server** digite:
+Para executar o servidor express vamos utilizar um script que já deixei configurado no package.json do npm, na pasta **server** digite:
 ```
-npx ts-node src/app.ts
+npm start
 ```
 Com isso você deve ver na linha de comando a seguinte frase:
 ```
 Rodando servidor na porta 1337...
 ```
-Caso a sua porta 1337 já esteja em uso é possível alterar ela na constante PORT em src/app.ts.
+Caso a sua porta 1337 já esteja em uso é possível alterar ela na constante PORT em src/server.ts.
 
 Agora que temos nosso back-end executando, vamos rodar o React! Na pasta **web** execute o seguinte comando:
 ```
@@ -110,15 +111,22 @@ Uma página no seu navegador padrão será aberta com a página web já em execu
 
 ## 🔧 Running the tests <a name = "tests"></a>
 
-Explain how to run the automated tests for this system.
+Para executar os testes do servidor, basta executar na pasta **server**
+```
+npm test
+```
 
-### Break down into end to end tests
-
-Explain what these tests test and why
+## Test the fee path
+### Esse arquivo de testes, testa as rotas relacionadas as informações de taxas fixas
+```
+test("It should response the GET method")
+```
+Verifica se a rota está retornando status 200 e também o corpo da resposta para verificar se o retorno está em um padrão específico correspondendo ao banco de dados.
 
 ```
-Give an example
+
 ```
+
 
 ### And coding style tests
 
