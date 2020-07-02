@@ -1,6 +1,6 @@
 #page-home {
   height: 100vh;
-  background: url('../../assets/background-calculator.svg') no-repeat 100% 0%;
+  background: url('../../assets/background-calculator.svg') no-repeat 80% 20%;
 }
 
 #page-home .content{
@@ -55,7 +55,10 @@
   line-height: 38px;
 }
 
-#page-home .content main .page-form {
+#page-home .content main table {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   background: #fff;
   border-radius: 8px;
   width: 100%;
@@ -63,55 +66,62 @@
   margin-top: 32px;
 }
 
-#page-home .content main .page-form .form-title {
+#page-home .content main table tr {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  padding-left: 4%;
-  padding-right: 4%;
-  padding-top: 16px;
+  justify-content: space-around;
 }
 
-#page-home .content main .page-form .form-title h4{
-  font-size: 24px;
+#page-home .content main table tr th {
+  text-align: start;
+  width: 130px;
 }
 
-#page-home .content main .page-form .form-inputs{
-  padding-left: 4%;
-  padding-right: 4%;
+#page-home .content main table tr td {
+  width: 130px;
 }
 
-#page-home .content main .page-form .form-inputs input{
+#page-home .content main table tr td select{
+  justify-content: center;
+}
+#page-home .content main table tr td p{
+  justify-content: center;
+}
+
+#page-home .content main table select,
+#page-home .content main table input{
   border: none;
   background: #F0F0F5;
   border-radius: 8px;
   height: 48px;
-  margin-left: 8px;
-  margin-right: 8px;
+  width: 7rem;
+  padding: 8px;
 }
 
-#page-home .content main .page-form .btn-form{
+#page-home .content main table .btn-form{
   display: flex;
   justify-content: flex-end;
-  padding-top: 8px;
-  padding-right: 4%;
 }
 
-#page-home .content main .page-form div button{
+#page-home .content main table .btn-form button{
   background: var(--primary-color);
   color: #ffffff;
   font-weight: 800;
   font-size: 16px;
   height: 40px;
-  width: 144px;
+  width: 7rem;
   border-style: none;
   border-radius: 8px;
+}
+
+#page-home .content main table .btn-form button:active{
+  background: #fa975e;
 }
 
 @media(max-height: 700px ) {
   #page-home {
     height: 100vh;
-    background: url('../../assets/background-calculator-smaller.svg') no-repeat 100% 10%;
+    background: url('../../assets/background-calculator-smaller.svg') no-repeat 95% 10%;
   }
 
   #page-home .content main {

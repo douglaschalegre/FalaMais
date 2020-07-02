@@ -8,7 +8,7 @@ describe("Test the plans path", () => {
     expect.objectContaining({
       id: expect.any(Number),
       name: expect.any(String),
-      free_minutes: expect.any(String),
+      free_minutes: expect.any(Number),
       fee: expect.any(Number)
     });
     done();
