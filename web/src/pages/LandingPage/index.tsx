@@ -24,14 +24,14 @@ const LandingPage = () => {
   const [receivers, setReceivers] = useState<String[]>([]);
   const [plans, setPlans] = useState<Plan[]>([]);
   const [fees, setFees] = useState<FeeObject[]>([]);
-  const [time, setTime] = useState<Number>(0);
+  const [time, setTime] = useState<Number>(1);
 
   const [selectedOrigin, setSelectedOrigin] = useState<String>();
   const [selectedReceiver, setSelectedReceiver] = useState<String>();
   const [selectedPlan, setSelectedPlan] = useState<Plan>();
 
-  const [comFaleMais, setComFaleMais] = useState<Number>(0);
-  const [semFaleMais, setSemFaleMais] = useState<Number>(0);
+  const [comFaleMais, setComFaleMais] = useState<Number>(1);
+  const [semFaleMais, setSemFaleMais] = useState<Number>(1);
 
   useEffect(() => {
     api.get('/origins').then(response => {
@@ -80,6 +80,7 @@ const LandingPage = () => {
 
   function handleSelectedPlan(e: ChangeEvent<HTMLSelectElement>) {
     let plan = plans.find(plan => (plan.id === Number(e.target.value)))
+    console.log(plan);
     setSelectedPlan(plan);
   }
 
@@ -91,8 +92,8 @@ const LandingPage = () => {
     let fee = Number(selectedPlan?.fee);
     let callTime = Number(time);
 
-    let plan = fees.find(element => ((selectedOrigin === element.origin) && (selectedReceiver === element.receiver)))
-    let fixedFee = Number(plan?.fee_per_minute) + (Number(plan?.fee_per_minute) * fee);
+    let planFee = fees.find(element => ((selectedOrigin === element.origin) && (selectedReceiver === element.receiver)))
+    let fixedFee = Number(planFee?.fee_per_minute) + (Number(planFee?.fee_per_minute) * fee);
 
     if (callTime > freeMinutes) {
       let minutes = (callTime - freeMinutes);
@@ -115,75 +116,82 @@ const LandingPage = () => {
   }
 
   return (
-    <div id="page-home">
-      <div className="content">
-        <header>
-          <div>
-            <img src={logo} alt="FalaMais" width="48" height="48" />
-            <h2>FalaMais</h2>
-          </div>
-        </header>
+    <>
+      <div id="page-home">
+        <div className="content">
+          <header>
+            <div>
+              <img src={logo} alt="FalaMais" width="48" height="48" />
+              <h2>FalaMais</h2>
+            </div>
+          </header>
 
-        <main>
-          <div className="page-text">
-            <h1>Simulador de preços.</h1>
-            <p>A Telzir, preocupada com a transparência junto aos seus clientes,
-            disponibiliza o FalaMais. Aqui, o cliente pode escolher os códigos das cidades de origem e destino,
+          <main>
+            <div className="page-text">
+              <h1>Simulador de preços.</h1>
+              <p>A Telzir, preocupada com a transparência junto aos seus clientes,
+              disponibiliza o FalaMais. Aqui, o cliente pode escolher os códigos das cidades de origem e destino,
               o tempo da ligação em minutos e escolher qual o plano FaleMais para calcular os custos e se planejar de forma melhor.</p>
-          </div>
-          <table>
-            <tbody>
-              <tr>
-                <th>Origem</th>
-                <th>Destino</th>
-                <th>Tempo de ligação</th>
-                <th>Plano FaleMais</th>
-                <th>Com FaleMais</th>
-                <th>Sem FaleMais</th>
-              </tr>
-              <tr>
-                <td><select onChange={handleSelectedOrigin}>
-                  <option value="0">Origem</option>
-                  {origins.map(origin => (
-                    <option key={Number(origin)} value={Number(origin)}>{origin}</option>
-                  ))}
-                </select></td>
+            </div>
+            <table>
+              <tbody>
+                <tr>
+                <tr>
+                  <th>Origem</th>
+                  <th>Destino</th>
+                  <th>Tempo de ligação</th>
+                  <th>Plano FaleMais</th>
+                  <th>Com FaleMais</th>
+                  <th>Sem FaleMais</th>
+                </tr>
+                <tr>
+                  <td><select onChange={handleSelectedOrigin}>
+                    <option value="0">Origem</option>
+                    {origins.map(origin => (
+                      <option key={Number(origin)} value={Number(origin)}>{origin}</option>
+                    ))}
+                  </select></td>
 
-                <td><select onChange={handleSelectedReceiver}>
-                  <option value="0">Destino</option>
-                  {receivers.map(receiver => (
-                    <option key={Number(receiver)} value={Number(receiver)}>{receiver}</option>
-                  ))}
-                </select></td>
+                  <td><select onChange={handleSelectedReceiver}>
+                    <option value="0">Destino</option>
+                    {receivers.map(receiver => (
+                      <option key={Number(receiver)} value={Number(receiver)}>{receiver}</option>
+                    ))}
+                  </select></td>
 
-                <td><input value={String(time)} type="number" onChange={handleChangeTime} /></td>
+                  <td><input value={String(time)} type="number" min="1" onChange={handleChangeTime} /></td>
 
-                <td><select onChange={handleSelectedPlan}>
-                  <option value="0">Escolha seu plano</option>
-                  {plans.map(plan => (
-                    <option key={plan.id} value={plan.id}>{plan.name}</option>
-                  ))}
-                </select></td>
+                  <td><select onChange={handleSelectedPlan}>
+                    <option value="0">Escolha seu plano</option>
+                    {plans.map(plan => (
+                      <option key={plan.id} value={plan.id}>{plan.name}</option>
+                    ))}
+                  </select></td>
 
-                <td><p>
-                  R$ {comFaleMais}
-                </p></td>
-                <td><p>R$ {semFaleMais}</p></td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <td>
-                  <div className="btn-form">
-                    <button onClick={handleSubmit}>Simular</button>
-                  </div>
-                </td>
-              </tr>
-            </tfoot>
-          </table>
-        </main>
+                  <td><p>
+                    R$ {comFaleMais}
+                  </p></td>
+                  <td><p>R$ {semFaleMais}</p></td>
+                </tr>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>
+                    <div className="btn-form">
+                      <button onClick={handleSubmit}>Simular</button>
+                    </div>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </main>
+        </div>
       </div>
-    </div>
+      <footer>
+        <span>Developt by <a href="https://github.com/douglaschalegre">@douglaschalegre</a> 🎔</span> 
+        </footer>
+    </>
   )
 }
 

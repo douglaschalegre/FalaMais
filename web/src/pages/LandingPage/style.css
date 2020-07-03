@@ -1,11 +1,11 @@
 #page-home {
-  height: 100vh;
+  height: 97.2vh;
   background: url('../../assets/background-calculator.svg') no-repeat 80% 20%;
 }
 
 #page-home .content{
   width: 100%;
-  height: 100%;
+  height: 95%;
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 30px;
@@ -58,6 +58,7 @@
 #page-home .content main table {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
   background: #fff;
   border-radius: 8px;
@@ -66,25 +67,29 @@
   margin-top: 32px;
 }
 
+
 #page-home .content main table tr {
-  display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-around;
+  margin: 16px;
 }
 
-#page-home .content main table tr th {
+#page-home .content main table tr tr th {
   text-align: start;
   width: 130px;
+
 }
 
-#page-home .content main table tr td {
+#page-home .content main table tr tr td {
   width: 130px;
+  margin: 8px;
 }
 
-#page-home .content main table tr td select{
+#page-home .content main table tr tr td select{
   justify-content: center;
 }
-#page-home .content main table tr td p{
+#page-home .content main table tr tr td p{
   justify-content: center;
 }
 
@@ -94,7 +99,8 @@
   background: #F0F0F5;
   border-radius: 8px;
   height: 48px;
-  width: 7rem;
+  width: 7.5rem;
+  margin-right: 16px;
   padding: 8px;
 }
 
@@ -112,15 +118,29 @@
   width: 7rem;
   border-style: none;
   border-radius: 8px;
+  margin-top: 2rem;
 }
 
 #page-home .content main table .btn-form button:active{
   background: #fa975e;
 }
 
+footer{
+  display: flex;
+  justify-content: center;
+  background: #383634;
+  color: #F0F0F5;
+  width: 100%;
+  bottom: 0;
+}
+footer a {
+  text-decoration: none;
+  color: #F0F0F5;
+}
+
 @media(max-height: 700px ) {
   #page-home {
-    height: 100vh;
+    height: 96vh;
     background: url('../../assets/background-calculator-smaller.svg') no-repeat 95% 10%;
   }
 
@@ -148,33 +168,65 @@
 
 }
 
-@media(max-width: 900px) {
+@media(max-width: 700px) {
   #page-home {
-    height: 100vh;
-    background: url('../../assets/background-calculator.svg') no-repeat 70% -190%;
+    height: 90vh;
+    background: url('../../assets/background-calculator-mobile.svg') no-repeat center 100%;
   }
 
   #page-home .content {
+    display: flex;
     align-items: center;
     text-align: center;
   }
 
   #page-home .content header {
-    margin: 48px auto 0;
+    margin: 24px auto 0;
   }
 
   #page-home .content main {
-    align-items: center;
-    margin-top: 7rem;
+    max-width: 80%;
+    margin-top: 2rem;
   }
 
   #page-home .content main h1 {
-    font-size: 42px;
-  }
-
-  #page-home .content main p {
     font-size: 24px;
   }
 
-  
+  #page-home .content main div p {
+    display: none;
+  }
+
+  #page-home .content main table {
+    height: 75%;
+    width: 100%;
+    margin-top: 32px;
+  }
+
+  #page-home .content main table tr {
+    display: flex;
+    margin-top: 16px;
+  }
+
+  #page-home .content main table tr tr {
+    flex-direction: column;
+
+  }
+
+  #page-home .content main table th{
+    margin-bottom: 25px;
+  }
+
+  #page-home .content main table td select,
+  #page-home .content main table td input{
+    margin-bottom: 8px;
+    height: 36px;
+  }
+
+  #page-home .content main table .btn-form button{
+    margin-top: 0;
+  }
+
+
+
 }
