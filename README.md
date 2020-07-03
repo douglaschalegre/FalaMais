@@ -27,7 +27,6 @@
 - [Getting Started](#getting_started)
 - [Usage](#usage)
 - [Built Using](#built_using)
-- [TODO](../TODO.md)
 - [Authors](#authors)
 
 ## 🧐 About <a name = "about"></a>
@@ -116,25 +115,6 @@ Para executar os testes do servidor, basta executar na pasta **server**
 npm test
 ```
 
-## Test the fee path
-### Esse arquivo de testes, testa as rotas relacionadas as informações de taxas fixas
-```
-test("It should response the GET method")
-```
-Verifica se a rota está retornando status 200 e também o corpo da resposta para verificar se o retorno está em um padrão específico correspondendo ao banco de dados.
-
-```
-
-```
-
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
 
 ## ✍️ Authors <a name = "authors"></a>
 
